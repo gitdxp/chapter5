@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="bicycle" class="temp1.bicycle"
+          p:type="jiante"
+          p:color="white"
+          p:speed="200" />
+    <bean id="people" class="temp1.people"
+          p:b1-ref="bicycle"
+          p:name="bmk"
+          p:height="180" />
+
+    <!-- 继承 -->
+    <bean id="Animal" class="temp1.Animal"
+          p:name="Amimal"
+          p:leg="4"
+          abstract="true" />
+    <bean id="dog"
+          p:name="dog" parent="Animal" />
+    <bean id="cat"
+          p:name="cat" parent="Animal" />
+    <!-- 依赖 -->
+    <bena id="manager" class="com.smart.haha"
+          depends-on="heihei" />
+    <bean id="heihei" class="com.smart.heihei" />
+    <!-- 前置依赖，前置依赖的bean会在本bean实例化之前创建好 -->
+
+    <!-- 引用 -->
+    <bean id="car" class="com.smart.haha" />
+    <bean id="booo" class="com.smart.kkk">
+        <property name="carId">
+            <idref bean="car" />
+        </property>
+    </bean>
+
+    <!--整合多个配置文件 -->
+    <import resource="classpath:ex.xml" />
+    <bean id="kdkdkd" class="com.smart.dkjfkj" p:name="ldj" p:car-ref="car1" />
+
+    <!-- singleton和prototype -->
+    <bean id="car" class="com.smart.car" scope="singleton" />
+    <!-- singleton单例模式   prototype非单例模式
+    <bean id="car" class="com.smart.car" scope="prototype" />
+    -->
+    <bean id="boss1" class="com.smart.boss" p:car-ref="car" />
+    <bean id="boss2" class="com.smart.boss" p:car-ref="car" />
+    <bean id="boss3" class="com.smart.boss" p:car-ref="car" />
+
+    <!-- 与WEB应用环境相关的Bean作用域 -->
+    <!-- request   session  globalSession  -->
+    <!-- FactoryBean -->
+
+</beans>

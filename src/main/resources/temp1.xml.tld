@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframwork.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    <bean id="foo" class="temp1.Foo">
+        <!-- 这种前两位不是都大写或小写的会发生配置问题 -->
+        <property name="iDCode" value="2323"/>
+        <!-- 反之，前两位都是大写或小写的不会出现问题 -->
+        <property name="name" value="Tom"/>
+    </bean>
+
+    <bean id="foo1" class="temp1.Foo">
+        <constructor-arg index="0" type="java.lang.String">
+            <value>code</value>
+        </constructor-arg>
+        <constructor-arg index="1" type="java.lang.String">
+            <value>name</value>
+        </constructor-arg>
+    </bean>
+    <!--通过自身类型反射匹配入参 -->
+    <bean id="boss" class="temp1.Boss">
+        <constructor-arg>
+            <value>John</value>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="car" />
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="office" />
+        </constructor-arg>
+    </bean>
+    <bean id="car" class="temp1.Car" />
+    <bean id="office" class="temp1.Office" />
+    <!-- 循环依赖问题 -->
+    <!-- 按属性注入可以解决这个问题 -->
+
+    <!-- 工厂方法注入 -->
+    <bean id="carFactory" class="temp1.CarFactory" />
+    <bean id="car5" factory-bean="carFactory"
+          factory-method="createHongQiCar" />
+</beans>

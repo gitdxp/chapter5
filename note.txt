@@ -1,0 +1,31 @@
+JavaBean关于属性命名的特殊规范
+变量的前两个字母要么全部大写，要么全部小写
+不这样会发生配置问题
+
+xml配置文件p命名空间
+
+自动装配  autowire
+
+方法注入
+lookup方法注入
+
+继承
+
+基于注解的配置，，与xml的配置文件本质上是无区别的
+@Component("userDao")
+
+<bean id="userDao" class="com.smart.UserDao" />
+二者是等价的
+
+扫描注解定义的Bean
+
+自动装配Bean
+@Autowired
+Autowired的required属性
+如果找不到bean，会报错，如果不希望报错，设置为false
+@Autowired(required=false)
+多个匹配的bean用@Qualifier来区别
+@Qualifier("userDao")
+
+
+

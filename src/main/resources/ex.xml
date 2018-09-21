@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="ex1" class="temp1.ex1" />
+    <bean id="ex2" class="temp1.ex2">
+        <property name="ex">
+            <ref bean="ex1"></ref>
+        </property>
+    </bean>
+
+    <bean id="boss1" class="temp1.Boss">
+        <property name="favorites">
+            <list>
+                <value>slkj</value>
+                <value>kklk</value>
+                <value>ski</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
